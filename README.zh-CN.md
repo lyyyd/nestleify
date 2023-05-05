@@ -1,18 +1,18 @@
 <div align="center">
-  <a href="https://github.com/zce/caz"><img src="docs/caz.png" alt="CAZ"></a>
+  <a href="https://github.com/lyyyd/nestleify"><img src="docs/caz.png" alt="CAZ"></a>
   <p>一个基于模板机制、简单而又强大的脚手架工具，用于提升我个人生产力。</p>
   <p>
-    <a href="https://github.com/zce/caz/actions"><img src="https://img.shields.io/github/actions/workflow/status/zce/caz/main.yml" alt="构建状态"></a>
-    <a href="https://codecov.io/gh/zce/caz"><img src="https://img.shields.io/codecov/c/github/zce/caz" alt="测试覆盖率"></a>
-    <a href="https://github.com/zce/caz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zce/caz" alt="许可证"></a>
+    <a href="https://github.com/lyyyd/nestleify/actions"><img src="https://img.shields.io/github/actions/workflow/status/lyyyd/nestleify/main.yml" alt="构建状态"></a>
+    <a href="https://codecov.io/gh/lyyyd/nestleify"><img src="https://img.shields.io/codecov/c/github/lyyyd/nestleify" alt="测试覆盖率"></a>
+    <a href="https://github.com/lyyyd/nestleify/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lyyyd/nestleify" alt="许可证"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/npm/v/caz" alt="NPM 版本"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/node/v/caz" alt="Node 版本要求"></a>
     <br>
     <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen" alt="代码风格"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/npm/dm/caz" alt="NPM 下载量"></a>
     <a href="https://packagephobia.com/result?p=caz"><img src="https://packagephobia.com/badge?p=caz" alt="安装包体积"></a>
-    <a href="https://github.com/zce/caz"><img src="https://img.shields.io/github/repo-size/zce/caz" alt="仓库体积"></a>
-    <a href="https://github.com/zce/caz"><img src="https://img.shields.io/librariesio/github/zce/caz" alt="依赖状态"></a>
+    <a href="https://github.com/lyyyd/nestleify"><img src="https://img.shields.io/github/repo-size/lyyyd/nestleify" alt="仓库体积"></a>
+    <a href="https://github.com/lyyyd/nestleify"><img src="https://img.shields.io/librariesio/github/lyyyd/nestleify" alt="依赖状态"></a>
   </p>
 </div>
 
@@ -218,7 +218,7 @@ $ caz list [owner] [-j|--json] [-s|--short]
 
 目前 CAZ 可用的官方模板有：
 
-- [template](https://github.com/caz-templates/template) - 用来创建 [CAZ](https://github.com/zce/caz) 的模板
+- [template](https://github.com/caz-templates/template) - 用来创建 [CAZ](https://github.com/lyyyd/nestleify) 的模板
 - [nm](https://github.com/caz-templates/nm) - 用来创建 [Node](https://nodejs.org) 模块
 - [vercel](https://github.com/caz-templates/vercel) - 用来创建 [Vercel](https://vercel.com) 应用
 - [react](https://github.com/caz-templates/react) - 用来创建现代化 [React](https://reactjs.org) 应用
@@ -464,7 +464,7 @@ caz(template, project, options)
 - [ ] 静默控制台输出 & 彩色控制台输出
 - [ ] 越来越多的官方模板
 
-也可以查看 [打开的 Issues](https://github.com/zce/caz/issues) 中有关建议功能（和已知问题）的列表。
+也可以查看 [打开的 Issues](https://github.com/lyyyd/nestleify/issues) 中有关建议功能（和已知问题）的列表。
 
 ## 参与贡献
 

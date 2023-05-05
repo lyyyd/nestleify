@@ -20,7 +20,7 @@
 ## Development
 
 ```shell
-$ git clone https://github.com/zce/caz.git
+$ git clone https://github.com/lyyyd/nestleify.git
 $ cd caz
 $ npm install
 $ npm run build

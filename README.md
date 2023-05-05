@@ -1,19 +1,18 @@
 <div align="center">
-  <a href="https://github.com/zce/caz"><img src="docs/caz.png" alt="CAZ"></a>
-  <p>A simple yet powerful template-based Scaffolding tools for my personal productivity.
-  nestleify, markdown file picture to base64, super fast, simple, easy to use</p>
+  <a href="https://github.com/lyyyd/nestleify"><img src="docs/caz.png" alt="CAZ"></a>
+  <p>nestleify, A simple yet powerful automation tools. markdown file picture to base64, super fast, simple, easy to use.</p>
   <p>
-    <a href="https://github.com/zce/caz/actions"><img src="https://img.shields.io/github/actions/workflow/status/zce/caz/main.yml" alt="Build Status"></a>
-    <a href="https://codecov.io/gh/zce/caz"><img src="https://img.shields.io/codecov/c/github/zce/caz" alt="Coverage Status"></a>
-    <a href="https://github.com/zce/caz/blob/master/LICENSE"><img src="https://img.shields.io/github/license/zce/caz" alt="License"></a>
+    <a href="https://github.com/lyyyd/nestleify/actions"><img src="https://img.shields.io/github/actions/workflow/status/lyyyd/nestleify/main.yml" alt="Build Status"></a>
+    <a href="https://codecov.io/gh/lyyyd/nestleify"><img src="https://img.shields.io/codecov/c/github/lyyyd/nestleify" alt="Coverage Status"></a>
+    <a href="https://github.com/lyyyd/nestleify/blob/master/LICENSE"><img src="https://img.shields.io/github/license/lyyyd/nestleify" alt="License"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/npm/v/caz" alt="NPM Version"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/node/v/caz" alt="Node Version"></a>
     <br>
     <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen" alt="Code Style"></a>
     <a href="https://npm.im/caz"><img src="https://img.shields.io/npm/dm/caz" alt="NPM Downloads"></a>
     <a href="https://packagephobia.com/result?p=caz"><img src="https://packagephobia.com/badge?p=caz" alt="Install Size"></a>
-    <a href="https://github.com/zce/caz"><img src="https://img.shields.io/github/repo-size/zce/caz" alt="Repo Size"></a>
-    <a href="https://github.com/zce/caz"><img src="https://img.shields.io/librariesio/github/zce/caz" alt="Dependencies Status"></a>
+    <a href="https://github.com/lyyyd/nestleify"><img src="https://img.shields.io/github/repo-size/lyyyd/nestleify" alt="Repo Size"></a>
+    <a href="https://github.com/lyyyd/nestleify"><img src="https://img.shields.io/librariesio/github/lyyyd/nestleify" alt="Dependencies Status"></a>
   </p>
 </div>
 
@@ -219,7 +218,7 @@ $ caz list [owner] [-j|--json] [-s|--short]
 
 Current available templates list:
 
-- [template](https://github.com/caz-templates/template) - for creating [caz](https://github.com/zce/caz) templates.
+- [template](https://github.com/caz-templates/template) - for creating [caz](https://github.com/lyyyd/nestleify) templates.
 - [nm](https://github.com/caz-templates/nm) - for creating [node](https://nodejs.org) modules.
 - [vercel](https://github.com/caz-templates/vercel) - for creating [vercel](https://vercel.com) apps.
 - [react](https://github.com/caz-templates/react) - for creating modern [react](https://reactjs.org) apps.
@@ -465,7 +464,7 @@ The following are the features I want to achieve or are under development:
 - [ ] console output (colorful & verbose)
 - [ ] more and more official templates
 
-See the [open issues](https://github.com/zce/caz/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/lyyyd/nestleify/issues) for a list of proposed features (and known issues).
 
 ## Contributing
 

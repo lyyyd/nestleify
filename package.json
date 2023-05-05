@@ -1,32 +1,29 @@
 {
   "name": "nestleify",
-  "version": "1.0.0",
-  "description": "A simple yet powerful template-based Scaffolding tools. nestleify, markdown file picture to base64, super fast, simple, easy to use",
+  "version": "1.0.1",
+  "description": "nestleify, A simple yet powerful automation tools. markdown file picture to base64, super fast, simple, easy to use.",
   "keywords": [
     "productivity",
     "scaffolding",
-    "boilerplate",
     "generator",
     "starter-kit",
-    "templates",
-    "template",
-    "caz",
+    "nestleify",
     "cli",
-    "zce"
+    "lyyyd"
   ],
-  "homepage": "https://github.com/zce/caz#readme",
+  "homepage": "https://github.com/lyyyd/nestleify#readme",
   "bugs": {
-    "url": "https://github.com/zce/caz/issues"
+    "url": "https://github.com/lyyyd/nestleify/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zce/caz.git"
+    "url": "git+https://github.com/lyyyd/nestleify.git"
   },
   "license": "MIT",
   "author": {
-    "name": "zce",
-    "email": "w@zce.me",
-    "url": "https://zce.me"
+    "name": "lyyyd",
+    "email": "david.jackson.lyd@gmail.com",
+    "url": "https://lyyyd.github.io/"
   },
   "main": "dist/index.js",
   "type": "module",
