@@ -1,0 +1,8 @@
+{
+  "name": "features",
+  "version": "0.1.0",
+  "description": "full features templates for caz",
+  "main": "index.js",
+  "author": "zce <w@zce.me> (https://zce.me/)",
+  "license": "MIT"
+}
