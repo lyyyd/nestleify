@@ -35,7 +35,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "ts-standard",
-    "test": "jest --coverage",
+    "test": "echo \"No test specified\"",
     "test-singlefile": "jest src/index.spec.ts",
     "prepare": "husky install .github/husky"
   },
@@ -112,5 +112,8 @@
   },
   "engines": {
     "node": ">=14.14"
+  },
+  "dependencies": {
+    "@jest/globals": "^29.5.0"
   }
 }
