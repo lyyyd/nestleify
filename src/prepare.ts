@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:46:08
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-05 22:57:45
+ * @LastEditTime: 2023-05-06 19:21:02
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -50,7 +50,7 @@ export default async (ctx: Context): Promise<void> => {
             picurlArr.forEach(async (item) => {
                 let relativePath = ''
                 try {
-                    relativePath = (decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/|\/\/][\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
+                    relativePath = path.normalize((decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/][\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
                 } catch (error) {
                     console.log('relativePath 获取报错')
                 }
