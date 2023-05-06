@@ -20,9 +20,14 @@ export default async (ctx: Context): Promise<void> => {
             const mapBase64: Map<string, string> = val.get('mapBase64') || new Map()
     
             imgList.forEach((url, index) => {
-                content += '\n\n'
                 content = content.replace(url, `![image][${picsNameArr[index]}]`);
-                content += `[${picsNameArr[index]}]: ${mapBase64.get(picsNameArr[index])}`;
+            });
+
+            const picsNameArrNew = [...new Set(picsNameArr)]
+
+            picsNameArrNew.forEach((url, index) => {
+                content += '\n\n'
+                content += `[${picsNameArrNew[index]}]: ${mapBase64.get(picsNameArrNew[index])}`;
             });
     
             writeFileStream(path.join(dirName, newFileName), content)
