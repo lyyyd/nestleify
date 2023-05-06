@@ -26,7 +26,6 @@
     "url": "https://lyyyd.github.io/"
   },
   "main": "dist/index.js",
-  "type": "module",
   "types": "dist/index.d.ts",
   "bin": "dist/cli.js",
   "files": [
