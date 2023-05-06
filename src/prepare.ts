@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:46:08
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-05 20:48:25
+ * @LastEditTime: 2023-05-05 22:57:45
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -42,12 +42,18 @@ export default async (ctx: Context): Promise<void> => {
             });
     
     
-            const picsBase = decodeURI(((picurlArr[0])
-                .match(/(file:[\/\\]{2}([\/\\]\w\:[\/\\])(\w*[\/\\])*|\w:.*|([\u4E00-\u9FA5\w\_\s\-\.]*[\/\\]))/g))![0]);
-    
+            // const picsBase = decodeURI(((picurlArr[0])
+            //     .match(/(file:[\/\\]{2}([\/\\]\w\:[\/\\])(\w*[\/\\])*|\w:.*|([\u4E00-\u9FA5\w\_\s\-\.]*[\/\\]))/g))![0]);
+            
+            console.log('picurlArr', picurlArr)
             const mapBase64: Map<string, string> = new Map();
             picurlArr.forEach(async (item) => {
-                const relativePath = (decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+\\[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
+                let relativePath = ''
+                try {
+                    relativePath = (decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/|\/\/][\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
+                } catch (error) {
+                    console.log('relativePath 获取报错')
+                }
                 let fileSuffix = path.extname(path.join(dirname, relativePath)).substring(1);
     
                 const data = fs.readFileSync(path.join(dirname, relativePath));
