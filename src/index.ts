@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:35:49
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-05 21:14:08
+ * @LastEditTime: 2023-05-08 23:01:11
  * @FilePath: \nestleify\src\index.ts
  * @Description: 
  * 
@@ -31,7 +31,7 @@ creator.use(mdfilelist)
 
 creator.use(prepare)
 
-creator.use(writefile)
+// creator.use(writefile)
 
 
 export default async (template: string, project: string = '.', options: Options = {}, src: string): Promise<void> => {
@@ -52,7 +52,8 @@ export default async (template: string, project: string = '.', options: Options 
     answers: Object.create(null),
     files: [],
     filePathsArr: [],
-    map: new Map()
+    map: new Map(),
+    oss: new Map(),
   }
 
   // running creator

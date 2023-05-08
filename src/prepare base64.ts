@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:46:08
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-08 23:02:26
+ * @LastEditTime: 2023-05-08 21:57:43
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -11,9 +11,10 @@
 import path from 'path'
 import { Context } from './types'
 import fs from 'fs'
-import { PicGo } from 'picgo'
 
-const picgo = new PicGo()
+
+
+
 
 export default async (ctx: Context): Promise<void> => {
     // console.log('ctx', ctx);
@@ -23,32 +24,6 @@ export default async (ctx: Context): Promise<void> => {
         const data = fs.readFileSync(path, 'utf-8');
         return data.toString();
     }
-
-    // const upload  = async (img?: any[]): Promise<any> => {
-    //     try {
-    //         const output = await picgo.upload(img)
-    //         return output;
-    //     } catch (e: any) {
-    //         return false
-    //     }
-    // }
-
-    const upload = async (img?: IUploadOption): Promise<ImgInfo[]|false> => {
-        try {
-            const output = await picgo.upload(img)
-            console.log('output***', output)
-            // return true
-            if (Array.isArray(output) && output.some((item: ImgInfo) => item.imgUrl)) {
-                return output.filter(item => item.imgUrl)
-            }else{
-                return false
-            }
-        } catch (e: any) {
-            return false
-        }
-    }
-
-
 
     const getMdFiles = async (src: string) => {
         // Gets a list of md files
@@ -66,7 +41,6 @@ export default async (ctx: Context): Promise<void> => {
                 picurl = (picurl.match(/[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
                 return picurl;
             });
-            
     
     
             // const picsBase = decodeURI(((picurlArr[0])
@@ -74,45 +48,27 @@ export default async (ctx: Context): Promise<void> => {
             
             console.log('picurlArr', picurlArr)
             const mapBase64: Map<string, string> = new Map();
-            await picurlArr.forEach(async (item) => {
+            picurlArr.forEach(async (item) => {
                 let relativePath = ''
                 try {
                     relativePath = path.normalize((decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/]+[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
                 } catch (error) {
                     console.log('relativePath 获取报错')
                 }
-                
-                console.log('relativePath', relativePath)
-
-                const fileFullPath = path.join(dirname, relativePath);
-
-                console.log('fileFullPath', fileFullPath)
-
-                // 上传阿里云
-                const res = await upload([fileFullPath]);
-
-                console.log('res', res)
-
-                if (res && res.length > 0) {
-                    // 记录路径
-                    ctx.oss.set(fileFullPath, res[0])
-                }
-
-                
-                // let fileSuffix = path.extname(path.join(dirname, relativePath)).substring(1);
+                let fileSuffix = path.extname(path.join(dirname, relativePath)).substring(1);
     
-                // const data = fs.readFileSync(path.join(dirname, relativePath));
+                const data = fs.readFileSync(path.join(dirname, relativePath));
     
-                // const filename = path.basename(path.join(dirname, relativePath))
+                const filename = path.basename(path.join(dirname, relativePath))
     
-                // const strBase64 = 'data:image/' + fileSuffix + ';base64,' + data.toString('base64');
+                const strBase64 = 'data:image/' + fileSuffix + ';base64,' + data.toString('base64');
     
-                // // mapBase64.set(filename, strBase64.substring(0, 50))
-                // mapBase64.set(filename, strBase64)
+                // mapBase64.set(filename, strBase64.substring(0, 50))
+                mapBase64.set(filename, strBase64)
     
             });
     
-            // obj.set('content', content)
+            obj.set('content', content)
             obj.set('imgList', picurlArr)
             obj.set('picsNameArr', picsNameArr)
             obj.set('mapBase64', mapBase64)
@@ -127,5 +83,5 @@ export default async (ctx: Context): Promise<void> => {
 
     ctx.map = map
 
-    console.log('ctx', ctx)
+    console.log('ctx.map', ctx.map)
 }

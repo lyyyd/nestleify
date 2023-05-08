@@ -136,4 +136,6 @@ export interface Context {
   filePathsArr: Array<string>,
 
   map: Map<string, any>,
+
+  oss: Map<string, ImgInfo>
 }
