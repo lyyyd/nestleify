@@ -9,7 +9,7 @@
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
  */
 import path from 'path'
-import { Context } from './types'
+import { Context, FileInfo, ImageRef } from './types'
 import fs from 'fs'
 import { PicGo } from 'picgo'
 
@@ -17,8 +17,15 @@ const picgo = new PicGo()
 
 export default async (ctx: Context): Promise<void> => {
     console.log('ctx', ctx);
+    ctx.fileInfoList.forEach((fileInfo: FileInfo) => {
+        console.log('1.fileInfo', fileInfo)
+        fileInfo.info.forEach((imageRef: ImageRef) => {
+            console.log('2.imageRef', imageRef)
+        })
+    })
 
-    const map: Map<string, any> = new Map;
+
+    // const map: Map<string, any> = new Map;
 
     const upload = async (img?: IUploadOption): Promise<ImgInfo[]|false> => {
         try {
@@ -44,7 +51,7 @@ export default async (ctx: Context): Promise<void> => {
     
     await getMdFiles(ctx.dest)
 
-    ctx.map = map
+    // ctx.map = map
 
     // console.log('ctx', ctx)
 }
