@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:58:03
+ * @LastEditTime: 2023-05-12 23:02:56
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -92,6 +92,6 @@ export default async (ctx: Context): Promise<void> => {
     await getMdFiles()
 
 
-    console.log('2.fileInfoList***', fileInfoList)
+    // console.log('2.fileInfoList***', fileInfoList)
     ctx.fileInfoList = fileInfoList
 }

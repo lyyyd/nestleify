@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:46:08
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:13:01
+ * @LastEditTime: 2023-05-12 23:25:22
  * @FilePath: \nestleify\src\upload.oss.ts
  * @Description: 
  * 
@@ -16,21 +16,21 @@ import { PicGo } from 'picgo'
 const picgo = new PicGo()
 
 export default async (ctx: Context): Promise<void> => {
-    console.log('ctx', ctx);
-    ctx.fileInfoList.forEach((fileInfo: FileInfo) => {
-        console.log('1.fileInfo', fileInfo)
-        fileInfo.info.forEach((imageRef: ImageRef) => {
-            console.log('2.imageRef', imageRef)
+    // console.log('ctx', ctx);
+
+    const getPendingFiles = (fileInfoList: FileInfo[]): ImageRef[] => {
+        const fileList: ImageRef[] = new Array();
+        ctx.fileInfoList.forEach((fileInfo: FileInfo) => {
+            fileInfo.info.forEach((imageRef: ImageRef) => {
+                fileList.push(imageRef)
+            })
         })
-    })
-
-
-    // const map: Map<string, any> = new Map;
+        return fileList;
+    }
 
     const upload = async (img?: IUploadOption): Promise<ImgInfo[]|false> => {
         try {
             const output = await picgo.upload(img)
-            // console.log('output***', output)
             // return true
             if (Array.isArray(output) && output.some((item: ImgInfo) => item.imgUrl)) {
                 return output.filter(item => item.imgUrl)
@@ -42,16 +42,13 @@ export default async (ctx: Context): Promise<void> => {
         }
     }
 
-
-
-    const getMdFiles = async (src: string) => {
-
-    }
-
     
-    await getMdFiles(ctx.dest)
+    const fileList: ImageRef[]= getPendingFiles(ctx.fileInfoList);
+    const files: string[] = fileList.map(val => val.imgFilePath)
 
-    // ctx.map = map
+    console.log('1.files', files)
 
-    // console.log('ctx', ctx)
+    const ossUploadedList = await upload(files)
+    console.log('2.ossUploadedList', ossUploadedList)
+
 }
