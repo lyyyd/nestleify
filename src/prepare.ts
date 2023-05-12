@@ -1,3 +1,13 @@
+/*
+ * @Author: lyyyd David.Jackson.Lyd@gmail.com
+ * @Date: 2023-05-05 21:24:55
+ * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2023-05-12 21:30:53
+ * @FilePath: \nestleify\src\prepare.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ */
 import path from 'path'
 import { Context } from './types'
 import fs from 'fs'
@@ -37,7 +47,9 @@ export default async (ctx: Context): Promise<void> => {
             const mapBase64: Map<string, string> = new Map();
             await picurlArr.forEach(async (item) => {
                 // 图片引用的相对路径
-                // TODO http图片
+                /**
+                 * TODO: 网络图片进行阿里云上传
+                 */
                 const relativePath = path.normalize((decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/]+[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
                 
                 const fileFullPath = path.join(dirname, relativePath);
