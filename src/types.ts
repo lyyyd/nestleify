@@ -131,9 +131,9 @@ export interface Context {
   /**
    * Template files.
    */
-  readonly files: File[],
+  // readonly files: File[],
 
-  filePathsArr: Array<string>,
+  files: Array<string>,
 
   map: Map<string, any>,
 

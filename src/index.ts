@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:35:49
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-08 23:01:11
+ * @LastEditTime: 2023-05-12 21:20:55
  * @FilePath: \nestleify\src\index.ts
  * @Description: 
  * 
@@ -16,7 +16,7 @@ import { file, http, config, exec, Ware, Middleware } from './core'
 import { Options, Context, Template } from './types'
 
 import confirm from './confirm'
-import mdfilelist from './mdfilelist'
+import require from './require'
 import prepare from './prepare'
 import writefile from './writefile'
 
@@ -27,7 +27,7 @@ const creator = new Ware<Context>()
 
 creator.use(confirm)
 
-creator.use(mdfilelist)
+creator.use(require)
 
 creator.use(prepare)
 
@@ -51,7 +51,7 @@ export default async (template: string, project: string = '.', options: Options 
     config: Object.create(null),
     answers: Object.create(null),
     files: [],
-    filePathsArr: [],
+    // filePathsArr: [],
     map: new Map(),
     oss: new Map(),
   }

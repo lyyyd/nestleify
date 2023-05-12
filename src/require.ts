@@ -4,7 +4,7 @@ import { Context } from './types'
 import fs from 'fs'
 
 export default async (ctx: Context): Promise<void> => {
-    const filePathsArr: Array<string> = []
+    const files: Array<string> = []
 
     // resolve dest path
     const folderPath = path.resolve(ctx.dest)
@@ -16,7 +16,7 @@ export default async (ctx: Context): Promise<void> => {
             //是文件
             let fileSuffix = path.extname(filePath)
             if (fileSuffix === '.md') {
-                filePathsArr.push(filePath);
+                files.push(filePath);
             }
         } else if (state.isDirectory()) {
             //是文件夹
@@ -31,7 +31,7 @@ export default async (ctx: Context): Promise<void> => {
     // Recursively walk through the folder to find the md file
     await getFiles(folderPath)
 
-    ctx.filePathsArr = filePathsArr;
+    ctx.files = files;
 
-    console.log('ctx.filePathsArr', ctx.filePathsArr)
+    console.log('ctx.files:', ctx.files)
 }
