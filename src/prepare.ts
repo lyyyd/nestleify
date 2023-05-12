@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:37:29
+ * @LastEditTime: 2023-05-12 22:54:11
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -19,18 +19,20 @@ export default async (ctx: Context): Promise<void> => {
     // console.log('ctx', ctx);
 
     /**
+     * fileInfoList的数据结构为
+     *          
+     * example.
      * 
-     * fileInfoList yaml 数据结构为
-     *      - 文件全路径1:
-     *          - 图片引用1：
-     *              图片全路径1
-     *          - 图片引用2：
-     *              图片全路径2
-     *      - 文件全路径2:
-     *          - 图片引用1：
-     *              图片全路径1
-     *          - 图片引用2：
-     *              图片全路径2
+     * [{
+     *      path: '',
+     *      info: [{
+     *          ref: '',
+     *          imgFilePath: ''
+     *      }, {
+     *          ref: '',
+     *          imgFilePath: ''
+     *      }]
+     *  }]
      * 
      * example: 
      * [{
@@ -43,7 +45,6 @@ export default async (ctx: Context): Promise<void> => {
      * 
      */
 
-    let fileInfoList: FileInfo[];
 
     const readFileStream = (path: string): any => {
         const data = fs.readFileSync(path, 'utf-8');
@@ -52,8 +53,10 @@ export default async (ctx: Context): Promise<void> => {
 
     const getMdFiles = async (src: string) => {
         // Gets a list of md files
+        
+        const fileInfoList: FileInfo[] = new Array;
         await ctx.files.forEach(async (filePath) => {
-            const fileMap: Map<string, Array<Map<string, string>>> = new Map();
+            // const fileMap: Map<string, Array<Map<string, string>>> = new Map();
 
             // 文件所在目录
             const dirname = path.dirname(filePath);
@@ -80,13 +83,18 @@ export default async (ctx: Context): Promise<void> => {
                 
                 const fileFullPath = path.join(dirname, relativePath);
 
+                // const map: Map<string, string> = new Map()
+                // map.set('ref', imageRef)
+                // aaa.set('fileFullPath', fileFullPath)
+
                 imgRefList.push({
                     ref: imageRef,
                     imgFilePath: fileFullPath,
                 })
 
             });
-            // console.log('imgRefList', imgRefList)
+
+            console.log('1.imgRefList***', imgRefList)
 
             fileInfoList.push(
                 {
@@ -96,7 +104,7 @@ export default async (ctx: Context): Promise<void> => {
             )
             
             // fileMap.set(filePath, imgRefList)
-            console.log('fileInfoList***', fileInfoList)
+            console.log('2.fileInfoList***', fileInfoList)
             // fileInfoList.push(fileMap)
 
         })
