@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 21:30:53
+ * @LastEditTime: 2023-05-12 21:43:08
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -17,7 +17,7 @@ const picgo = new PicGo()
 
 export default async (ctx: Context): Promise<void> => {
     console.log('ctx', ctx);
-    const map: Map<string, any> = new Map;
+    const fileInfoList: any[] = new Array;
 
     const readFileStream = (path: string): any => {
         const data = fs.readFileSync(path, 'utf-8');
@@ -26,49 +26,47 @@ export default async (ctx: Context): Promise<void> => {
 
     const getMdFiles = async (src: string) => {
         // Gets a list of md files
-        await ctx.files.forEach(async (mdFilePath) => {
-            const obj: Map<string, string | Array<string> | Map<string, string>> = new Map
+        await ctx.files.forEach(async (filePath) => {
+            const fileMap: Map<string, Array<Map<string, string>>> = new Map();
 
             // 文件所在目录
-            const dirname = path.dirname(mdFilePath)
+            const dirname = path.dirname(filePath);
             // 文件内容
-            const content = readFileStream(mdFilePath);
+            const content = readFileStream(filePath);
             // 图片引用列表
-            const picurlArr: Array<string> = content.match(/\!\[.*\]\(.*\)/g) || [];
+            const imgRefArr: Array<string> = content.match(/\!\[.*\]\(.*\)/g) || [];
 
-            // const picsNameArr = picurlArr.map(item => {
+            // const picsNameArr = imgRefArr.map(item => {
             //     let picurl = decodeURI(item);
             //     picurl = (picurl.match(/[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
             //     return picurl;
             // });
-            console.log('picurlArr', picurlArr)
+            // console.log('imgRefArr', imgRefArr)
             // console.log('picsNameArr', picsNameArr)
 
-            const mapBase64: Map<string, string> = new Map();
-            await picurlArr.forEach(async (item) => {
+            const imgRefList: Map<string, string>[] = new Array;
+            imgRefArr.forEach(async (imageRef) => {
+                const imageRefMap: Map<string, string> = new Map();
                 // 图片引用的相对路径
                 /**
                  * TODO: 网络图片进行阿里云上传
                  */
-                const relativePath = path.normalize((decodeURI(item).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/]+[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
+                const relativePath = path.normalize((decodeURI(imageRef).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/]+[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
                 
                 const fileFullPath = path.join(dirname, relativePath);
+                imageRefMap.set(imageRef, fileFullPath)
+                imgRefList.push(imageRefMap)
 
-                console.log('fileFullPath', fileFullPath)
             });
-    
-            // obj.set('content', content)
-            // obj.set('imgList', picurlArr)
-            // obj.set('picsNameArr', picsNameArr)
-            // obj.set('mapBase64', mapBase64)
-            // map.set(mdFilePath, obj)
-    
-        })
+            fileMap.set(filePath, imgRefList)
+            fileInfoList.push(fileMap)
 
+        })
+        console.log('fileInfoList', fileInfoList)
     }
 
     
     await getMdFiles(ctx.dest)
 
-    ctx.map = map
+    // ctx.map = map
 }
