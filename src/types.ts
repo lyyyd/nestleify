@@ -89,6 +89,16 @@ export interface File {
   contents: Buffer
 }
 
+export interface FileInfo {
+  path: string
+  info: Array<ImageRef>
+}
+
+export interface ImageRef {
+  ref: string
+  imgFilePath: string
+}
+
 /**
  * Creator context.
  */

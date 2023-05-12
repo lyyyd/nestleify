@@ -2,14 +2,14 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:09:20
+ * @LastEditTime: 2023-05-12 22:37:29
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
  */
 import path from 'path'
-import { Context } from './types'
+import { Context, FileInfo, ImageRef } from './types'
 import fs from 'fs'
 import { PicGo } from 'picgo'
 
@@ -43,7 +43,7 @@ export default async (ctx: Context): Promise<void> => {
      * 
      */
 
-    const fileInfoList: Map<string, Array<Map<string, string>>>[] = new Array;
+    let fileInfoList: FileInfo[];
 
     const readFileStream = (path: string): any => {
         const data = fs.readFileSync(path, 'utf-8');
@@ -68,9 +68,10 @@ export default async (ctx: Context): Promise<void> => {
             //     return picurl;
             // });
 
-            const imgRefList: Map<string, string>[] = new Array;
+            // const imgRefList: Map<string, ImageRef>[] = new Array;
+            const imgRefList: ImageRef[] = new Array;
             imgRefArr.forEach(async (imageRef) => {
-                const imageRefMap: Map<string, string> = new Map();
+                let imageRefMap: Map<string, ImageRef> = new Map()
                 // 图片引用的相对路径
                 /**
                  * TODO: 网络图片进行阿里云上传
@@ -78,17 +79,29 @@ export default async (ctx: Context): Promise<void> => {
                 const relativePath = path.normalize((decodeURI(imageRef).match(/[\u4E00-\u9FA5\w_\s\-]+[\\|\/]+[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0]);
                 
                 const fileFullPath = path.join(dirname, relativePath);
-                imageRefMap.set(imageRef, fileFullPath)
-                imgRefList.push(imageRefMap)
+
+                imgRefList.push({
+                    ref: imageRef,
+                    imgFilePath: fileFullPath,
+                })
 
             });
-            fileMap.set(filePath, imgRefList)
-            console.log('fileMap', fileMap)
-            fileInfoList.push(fileMap)
+            // console.log('imgRefList', imgRefList)
+
+            fileInfoList.push(
+                {
+                    path: filePath,
+                    info: imgRefList
+                }
+            )
+            
+            // fileMap.set(filePath, imgRefList)
+            console.log('fileInfoList***', fileInfoList)
+            // fileInfoList.push(fileMap)
 
         })
     }
     await getMdFiles(ctx.dest)
 
-    ctx.fileInfoList = fileInfoList
+    // ctx.fileInfoList = fileInfoList
 }
