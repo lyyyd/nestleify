@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:54:11
+ * @LastEditTime: 2023-05-12 22:58:03
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -21,7 +21,7 @@ export default async (ctx: Context): Promise<void> => {
     /**
      * fileInfoList的数据结构为
      *          
-     * example.
+     * example:
      * 
      * [{
      *      path: '',
@@ -34,15 +34,6 @@ export default async (ctx: Context): Promise<void> => {
      *      }]
      *  }]
      * 
-     * example: 
-     * [{
-     *     'D:\\test.md': [{
-     *          '\!\[\](.\\img\\1.png)': 'D:\\img\\1.png'
-     *      }, {
-     *          '\!\[\](.\\img\\2.png)': 'D:\\img\\2.png'
-     *      }]
-     *  }]
-     * 
      */
 
 
@@ -51,10 +42,10 @@ export default async (ctx: Context): Promise<void> => {
         return data.toString();
     }
 
-    const getMdFiles = async (src: string) => {
+    const fileInfoList: FileInfo[] = new Array;
+    const getMdFiles = async () => {
         // Gets a list of md files
         
-        const fileInfoList: FileInfo[] = new Array;
         await ctx.files.forEach(async (filePath) => {
             // const fileMap: Map<string, Array<Map<string, string>>> = new Map();
 
@@ -65,13 +56,6 @@ export default async (ctx: Context): Promise<void> => {
             // 图片引用列表
             const imgRefArr: Array<string> = content.match(/\!\[.*\]\(.*\)/g) || [];
 
-            // const picsNameArr = imgRefArr.map(item => {
-            //     let picurl = decodeURI(item);
-            //     picurl = (picurl.match(/[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
-            //     return picurl;
-            // });
-
-            // const imgRefList: Map<string, ImageRef>[] = new Array;
             const imgRefList: ImageRef[] = new Array;
             imgRefArr.forEach(async (imageRef) => {
                 let imageRefMap: Map<string, ImageRef> = new Map()
@@ -94,7 +78,7 @@ export default async (ctx: Context): Promise<void> => {
 
             });
 
-            console.log('1.imgRefList***', imgRefList)
+            // console.log('1.imgRefList***', imgRefList)
 
             fileInfoList.push(
                 {
@@ -102,14 +86,12 @@ export default async (ctx: Context): Promise<void> => {
                     info: imgRefList
                 }
             )
-            
-            // fileMap.set(filePath, imgRefList)
-            console.log('2.fileInfoList***', fileInfoList)
-            // fileInfoList.push(fileMap)
 
         })
     }
-    await getMdFiles(ctx.dest)
+    await getMdFiles()
 
-    // ctx.fileInfoList = fileInfoList
+
+    console.log('2.fileInfoList***', fileInfoList)
+    ctx.fileInfoList = fileInfoList
 }

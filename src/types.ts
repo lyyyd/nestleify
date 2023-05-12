@@ -97,6 +97,7 @@ export interface FileInfo {
 export interface ImageRef {
   ref: string
   imgFilePath: string
+  ossUri?: string
 }
 
 /**
@@ -145,7 +146,7 @@ export interface Context {
 
   files: Array<string>,
 
-  fileInfoList: Map<string, Array<Map<string, string>>>[],
+  fileInfoList: FileInfo[],
 
   map: Map<string, any>,
 
