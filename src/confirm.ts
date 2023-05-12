@@ -1,3 +1,13 @@
+/*
+ * @Author: lyyyd David.Jackson.Lyd@gmail.com
+ * @Date: 2023-05-05 21:24:55
+ * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2023-05-12 21:00:18
+ * @FilePath: \nestleify\src\confirm.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ */
 import path from 'path'
 import prompts from 'prompts'
 import { file } from './core'
@@ -34,40 +44,43 @@ export default async (ctx: Context): Promise<void> => {
   console.clear()
 
   // confirm & choose next
-  const { choose, other }: { choose?: string, other?: string } = await prompts([
+  // const { choose, other }: { choose?: string, other?: string } = await prompts([
+  await prompts([
     {
       name: 'sure',
       type: 'confirm',
       message: isCurrent ? 'Scan in current directory?' : 'Scan other directories?'
     },
 
-    {
-      name: 'choose',
-      type: (prev: boolean) => prev ? 'text' : 'select',
-      initial: (prev: boolean) => prev ? './' : false,
-      message: `${isCurrent ? 'Current' : 'Target'} directory is not empty. How to continue?`,
-      hint: ' ',
-      choices: [
-        { title: 'Other', value: 'Other' },
-        { title: 'Cancel', value: 'cancel' }
-      ]
-    },
-    {
-      name: 'other',
-      type: prev => prev == 'Other' ? 'text' : null,
-      message: 'Please enter the other directory to scan? \n (Tips: If Ctrl + C copy the directory path and Ctrl + V does not work, right-click to paste the directory path!)'
-    }
+    // {
+    //   name: 'choose',
+    //   type: (prev: boolean) => prev ? 'text' : 'select',
+    //   initial: (prev: boolean) => prev ? './' : false,
+    //   message: `${isCurrent ? 'Current' : 'Target'} directory is not empty. How to continue?`,
+    //   hint: ' ',
+    //   choices: [
+    //     { title: 'Other', value: 'Other' },
+    //     { title: 'Cancel', value: 'cancel' }
+    //   ]
+    // },
+    // {
+    //   name: 'other',
+    //   type: prev => prev == 'Other' ? 'text' : null,
+    //   message: 'Please enter the other directory to scan? \n (Tips: If Ctrl + C copy the directory path and Ctrl + V does not work, right-click to paste the directory path!)'
+    // }
   ])
 
-  console.log('other', other)
-  console.log('choose', choose)
-  if (other) {
-    ctx.dest = other || ''
-  }else if (choose) {
-    ctx.dest = path.resolve('./')
-  }else if (!choose && !other) {
-    ctx.dest = path.resolve('./')
-  }
+  // console.log('other', other)
+  // console.log('choose', choose)
+  // if (other) {
+  //   ctx.dest = other || ''
+  // }else if (choose) {
+  //   ctx.dest = path.resolve('./')
+  // }else if (!choose && !other) {
+  //   ctx.dest = path.resolve('./')
+  // }
+
+  ctx.dest = 'D:\\myGitHub\\nestleify\\md'
 
   // Otherwise is cancel task
   if (choose == null || choose === 'cancel') throw new Error('You have cancelled this task.')
