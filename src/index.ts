@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:35:49
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 21:20:55
+ * @LastEditTime: 2023-05-12 22:12:21
  * @FilePath: \nestleify\src\index.ts
  * @Description: 
  * 
@@ -18,6 +18,7 @@ import { Options, Context, Template } from './types'
 import confirm from './confirm'
 import require from './require'
 import prepare from './prepare'
+import upload from './upload.oss'
 import writefile from './writefile'
 
 // export inject for test
@@ -30,6 +31,8 @@ creator.use(confirm)
 creator.use(require)
 
 creator.use(prepare)
+
+creator.use(upload)
 
 // creator.use(writefile)
 
