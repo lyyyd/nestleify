@@ -51,6 +51,7 @@ export default async (template: string, project: string = '.', options: Options 
     config: Object.create(null),
     answers: Object.create(null),
     files: [],
+    fileInfoList: [],
     // filePathsArr: [],
     map: new Map(),
     oss: new Map(),

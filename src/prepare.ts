@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 21:43:08
+ * @LastEditTime: 2023-05-12 22:09:20
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -16,8 +16,34 @@ import { PicGo } from 'picgo'
 const picgo = new PicGo()
 
 export default async (ctx: Context): Promise<void> => {
-    console.log('ctx', ctx);
-    const fileInfoList: any[] = new Array;
+    // console.log('ctx', ctx);
+
+    /**
+     * 
+     * fileInfoList yaml 数据结构为
+     *      - 文件全路径1:
+     *          - 图片引用1：
+     *              图片全路径1
+     *          - 图片引用2：
+     *              图片全路径2
+     *      - 文件全路径2:
+     *          - 图片引用1：
+     *              图片全路径1
+     *          - 图片引用2：
+     *              图片全路径2
+     * 
+     * example: 
+     * [{
+     *     'D:\\test.md': [{
+     *          '\!\[\](.\\img\\1.png)': 'D:\\img\\1.png'
+     *      }, {
+     *          '\!\[\](.\\img\\2.png)': 'D:\\img\\2.png'
+     *      }]
+     *  }]
+     * 
+     */
+
+    const fileInfoList: Map<string, Array<Map<string, string>>>[] = new Array;
 
     const readFileStream = (path: string): any => {
         const data = fs.readFileSync(path, 'utf-8');
@@ -41,8 +67,6 @@ export default async (ctx: Context): Promise<void> => {
             //     picurl = (picurl.match(/[\u4E00-\u9FA5\w_\s\-]+\.+(jpg|png|JPG|PNG|jpeg|JPEG|gif|GIF)/g))![0];
             //     return picurl;
             // });
-            // console.log('imgRefArr', imgRefArr)
-            // console.log('picsNameArr', picsNameArr)
 
             const imgRefList: Map<string, string>[] = new Array;
             imgRefArr.forEach(async (imageRef) => {
@@ -59,14 +83,12 @@ export default async (ctx: Context): Promise<void> => {
 
             });
             fileMap.set(filePath, imgRefList)
+            console.log('fileMap', fileMap)
             fileInfoList.push(fileMap)
 
         })
-        console.log('fileInfoList', fileInfoList)
     }
-
-    
     await getMdFiles(ctx.dest)
 
-    // ctx.map = map
+    ctx.fileInfoList = fileInfoList
 }

@@ -135,6 +135,8 @@ export interface Context {
 
   files: Array<string>,
 
+  fileInfoList: Map<string, Array<Map<string, string>>>[],
+
   map: Map<string, any>,
 
   oss: Map<string, ImgInfo>
