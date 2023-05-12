@@ -83,7 +83,7 @@ export default async (ctx: Context): Promise<void> => {
   ctx.dest = 'D:\\myGitHub\\nestleify\\md'
 
   // Otherwise is cancel task
-  if (choose == null || choose === 'cancel') throw new Error('You have cancelled this task.')
+  // if (choose == null || choose === 'cancel') throw new Error('You have cancelled this task.')
 
   // Merge not require any action
 }
