@@ -100,6 +100,18 @@ export interface ImageRef {
   ossUri?: string
 }
 
+export interface IImgInfo {
+  buffer?: Buffer
+  base64Image?: string
+  fileName?: string
+  filePath?: string
+  width?: number
+  height?: number
+  extname?: string
+  imgUrl?: string
+  [propName: string]: any
+}
+
 /**
  * Creator context.
  */

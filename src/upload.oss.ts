@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:46:08
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 23:25:22
+ * @LastEditTime: 2023-05-13 22:18:38
  * @FilePath: \nestleify\src\upload.oss.ts
  * @Description: 
  * 
@@ -11,7 +11,8 @@
 import path from 'path'
 import { Context, FileInfo, ImageRef } from './types'
 import fs from 'fs'
-import { PicGo } from 'picgo'
+import { PicGo } from '@lyland/picgo'
+// import { PicGo } from 'picgo'
 
 const picgo = new PicGo()
 
@@ -28,12 +29,13 @@ export default async (ctx: Context): Promise<void> => {
         return fileList;
     }
 
-    const upload = async (img?: IUploadOption): Promise<ImgInfo[]|false> => {
+    const upload = async (img?: string[]): Promise<any> => {
         try {
             const output = await picgo.upload(img)
             // return true
-            if (Array.isArray(output) && output.some((item: ImgInfo) => item.imgUrl)) {
-                return output.filter(item => item.imgUrl)
+            if (Array.isArray(output) && output.some((item: any) => item.imgUrl)) {
+                // return output.filter(item => item.imgUrl)
+                return output
             }else{
                 return false
             }

@@ -101,6 +101,7 @@
     "lodash": "4.17.21",
     "node-fetch": "3.3.0",
     "ora": "6.1.2",
+    "@lyland/picgo": "^2.2.2",
     "picgo": "^1.5.3",
     "prompts": "2.4.2",
     "semver": "7.3.8",
