@@ -1,38 +1,16 @@
 import path from 'path'
 import { file } from './core'
-import { Context } from './types'
+import { Context, FileInfo } from './types'
 import fs from 'fs'
 
 export default async (ctx: Context): Promise<void> => {
     // 写数据到文件
-    const writeMdFile = (ctx: Map<string, any>) => {
-        ctx.forEach((val, key) => {
-            const parser = path.parse(key);
-            const dirName: string = parser.dir
-            const fileName: string = parser.name
-            const ext: string = parser.ext
-            const newFileName: string = fileName + '_base64' + ext
-    
-    
-            let content: string = val.get('content') || ''
-            const imgList: Array<string> = val.get('imgList') || [];
-            const picsNameArr: Array<string> = val.get('picsNameArr') || [];
-            const mapBase64: Map<string, string> = val.get('mapBase64') || new Map()
-    
-            imgList.forEach((url, index) => {
-                content = content.replace(url, `![image][${picsNameArr[index]}]`);
-            });
-
-            const picsNameArrNew = [...new Set(picsNameArr)]
-
-            picsNameArrNew.forEach((url, index) => {
-                content += '\n\n'
-                content += `[${picsNameArrNew[index]}]: ${mapBase64.get(picsNameArrNew[index])}`;
-            });
-    
-            writeFileStream(path.join(dirName, newFileName), content)
-        })
-    
+    const writeMdFile = (ctx: Context) => {
+        console.log('ctx***', ctx)
+        ctx.fileInfoList.forEach((fileInfo: FileInfo) => {
+            console.log('fileInfo path', fileInfo.path)
+            console.log('fileInfo info', fileInfo.info)
+        } )
     
     }
     
@@ -53,6 +31,6 @@ export default async (ctx: Context): Promise<void> => {
         ws.close()
     }
 
-    await writeMdFile(ctx.map);
+    await writeMdFile(ctx);
     
 }

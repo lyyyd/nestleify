@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 20:35:49
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 22:12:21
+ * @LastEditTime: 2023-05-14 18:36:19
  * @FilePath: \nestleify\src\index.ts
  * @Description: 
  * 
@@ -20,6 +20,7 @@ import require from './require'
 import prepare from './prepare'
 import upload from './upload.oss'
 import writefile from './writefile'
+import outtput from './outtput'
 
 // export inject for test
 const { inject } = prompts
@@ -33,6 +34,8 @@ creator.use(require)
 creator.use(prepare)
 
 creator.use(upload)
+
+creator.use(outtput)
 
 // creator.use(writefile)
 

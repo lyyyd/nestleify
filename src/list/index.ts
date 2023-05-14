@@ -1,3 +1,13 @@
+/*
+ * @Author: lyyyd David.Jackson.Lyd@gmail.com
+ * @Date: 2023-05-05 21:24:56
+ * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
+ * @LastEditTime: 2023-05-14 18:47:36
+ * @FilePath: \nestleify\src\list\index.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ */
 import { config } from '../core'
 import fetch from './fetch'
 

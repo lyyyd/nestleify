@@ -32,7 +32,7 @@ cli.help().version(version).parse()
 const onError = (err: Error): void => {
   // output details when exception occurs
   cli.options.debug as boolean && console.error(err)
-  console.error('Exception occurred: ' + err.message)
+  // console.error('Exception occurred: ' + err.message)
   process.exit(1)
 }
 

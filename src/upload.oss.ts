@@ -57,7 +57,7 @@ export default async (ctx: Context): Promise<void> => {
                 }
                 fileList.push(imageRef)
             })
-            console.log('fileInfo***', fileInfo)
+            // console.log('fileInfo***', fileInfo)
         })
         return fileList;
     }
@@ -65,5 +65,5 @@ export default async (ctx: Context): Promise<void> => {
     setUplodedUri()
 
     
-    console.log('ctx', ctx);
+    // console.log('ctx', ctx);
 }
