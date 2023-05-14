@@ -97,6 +97,8 @@ export interface FileInfo {
 export interface ImageRef {
   ref: string
   imgFilePath: string
+  baseDir?: string
+  imgName?: string
   ossUri?: string
 }
 

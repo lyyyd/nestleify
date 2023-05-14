@@ -2,7 +2,7 @@
  * @Author: lyyyd David.Jackson.Lyd@gmail.com
  * @Date: 2023-05-05 21:24:55
  * @LastEditors: lyyyd David.Jackson.Lyd@gmail.com
- * @LastEditTime: 2023-05-12 23:02:56
+ * @LastEditTime: 2023-05-14 19:14:05
  * @FilePath: \nestleify\src\prepare.ts
  * @Description: 
  * 
@@ -74,6 +74,8 @@ export default async (ctx: Context): Promise<void> => {
                 imgRefList.push({
                     ref: imageRef,
                     imgFilePath: fileFullPath,
+                    baseDir: path.dirname(fileFullPath),
+                    imgName: path.parse(fileFullPath).name,
                 })
 
             });
